@@ -17,4 +17,16 @@ describe "String interview questions" do
     end
   end
 
+  describe "#is_palindrome" do
+    it "checks if a string is a palindrome" do
+      # p swap_even_odd(arr)
+      expect(is_palindrome("abccba")).to be_truthy
+      expect(is_palindrome("abCcba")).to be_truthy
+      expect(is_palindrome("abcba")).to be_truthy
+      expect(is_palindrome("abcd eba")).to be_falsey
+      expect(is_palindrome("A man, a plan, a canal, Panama.")).to be_truthy
+
+    end
+  end
+
 end

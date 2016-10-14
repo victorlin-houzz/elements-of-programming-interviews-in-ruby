@@ -24,4 +24,12 @@ def str_to_int(str)
   return is_negative ? -num : num
 end
 
-#
+# 7.5
+# Check if a string is palindrome
+def is_palindrome(str)
+  out_str = str.downcase.gsub(/\W/, "")
+  0.upto(out_str.length / 2) do |idx|
+    return false if out_str[idx, 1] != out_str[out_str.length - idx - 1, 1]
+  end
+  true
+end
