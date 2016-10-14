@@ -132,7 +132,7 @@ def rotate_matrix(arr, clockwise)
   0.upto(dup_arr.length / 2) do |i|
     i.upto(dup_arr.length - 2 - i) do |j|
       if clockwise
-        p "#{i}, #{j}"
+        # p "#{i}, #{j}"
         # p "#{dup_arr[i][j]}, #{dup_arr[j][size - i]}, #{dup_arr[size - i][size - j]}, #{dup_arr[size - j][i]}"
         dup_arr[i][j], dup_arr[j][size - i], dup_arr[size - i][size - j], dup_arr[size - j][i] =
         dup_arr[size - j][i], dup_arr[i][j], dup_arr[j][size - i], dup_arr[size - i][size - j]
