@@ -33,3 +33,33 @@ def is_palindrome(str)
   end
   true
 end
+
+# 7.6 Reverse words
+def reverse_words(str)
+  out_str = str.reverse
+  out_str.split(" ").map{|word| word.reverse}.join(" ")
+end
+
+# 7.7 Look and say
+def look_and_say(n)
+  start = '1'
+  n.times do |time|
+    start = next_str(start)
+  end
+  start
+end
+
+def next_str(str)
+  out_str = ""
+  idx = 0
+  while idx < str.length
+    count = 1
+    while idx < str.length - 1 && str[idx, 1] == str[idx + 1, 1]
+      count += 1
+      idx += 1
+    end
+    out_str += count.to_s + str[idx, 1]
+    idx += 1
+  end
+  out_str
+end
