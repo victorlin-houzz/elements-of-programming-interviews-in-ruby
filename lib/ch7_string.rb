@@ -164,6 +164,8 @@ def rle_decoding(str)
   out_str
 end
 
+# 7.13 Rabin-Karp hash algorithm to check sub strings
+# O(m+n)
 def substring_idx(str, sub_str)
   out_arr = []
   hash = sub_str.hash
