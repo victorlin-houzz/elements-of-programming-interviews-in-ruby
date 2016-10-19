@@ -47,4 +47,12 @@ describe "String interview questions" do
       expect(roman_to_dec('LIC')).to eq(149)
     end
   end
+  describe "#valid_ip?" do
+    it "checks if an input str is a valid ip" do
+      expect(valid_ip?("192.168")).to be(false)
+      expect(valid_ip?("192.168.1")).to be(false)
+      expect(valid_ip?("192.168.1.1")).to be(true)
+      expect(valid_ip?("192.168.1.256")).to be(false)
+    end
+  end
 end
