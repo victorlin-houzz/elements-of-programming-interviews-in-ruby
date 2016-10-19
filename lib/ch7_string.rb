@@ -63,3 +63,29 @@ def next_str(str)
   end
   out_str
 end
+
+
+# 7.9 Convert from Roman to Decimal
+def roman_to_dec(str)
+  hash_roman = {
+    'I' => 1,
+    'V' => 5,
+    'X' => 10,
+    'L' => 50,
+    'C' => 100,
+    'D' => 500,
+    'M' => 1000,
+  }
+  # From right to left; first set the num = the right most num
+  num = hash_roman[str[str.length - 1, 1]]
+
+  # Then compare if left < right, substract from num; else add to num
+  (str.length - 2).downto(0).each do |idx|
+    if hash_roman[str[idx, 1]] < hash_roman[str[idx + 1, 1]]
+      num -= hash_roman[str[idx, 1]]
+    else
+      num += hash_roman[str[idx, 1]]
+    end
+  end
+  num
+end

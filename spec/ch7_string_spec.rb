@@ -39,4 +39,12 @@ describe "String interview questions" do
       expect(look_and_say(4)).to eq("111221")
     end
   end
+
+  describe "#roman_to_dec" do
+    it "converts the roman word to decimal number." do
+      expect(roman_to_dec('IC')).to eq(99)
+      expect(roman_to_dec('XVI')).to eq(16)
+      expect(roman_to_dec('LIC')).to eq(149)
+    end
+  end
 end
