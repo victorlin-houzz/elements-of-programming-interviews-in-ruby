@@ -78,4 +78,10 @@ describe "String interview questions" do
       expect(rle_decoding("1a1b3c2d1e")).to eq("abcccdde")
     end
   end
+
+  describe "#substring_idx" do
+    it "check the occourances of a substring" do
+      expect(substring_idx("abc abcabcbabc", "abc")).to eq([0,4,7,11])
+    end
+  end
 end

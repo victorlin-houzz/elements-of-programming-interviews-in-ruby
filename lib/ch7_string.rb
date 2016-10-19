@@ -163,3 +163,12 @@ def rle_decoding(str)
   end
   out_str
 end
+
+def substring_idx(str, sub_str)
+  out_arr = []
+  hash = sub_str.hash
+  0.upto(str.length - sub_str.length).each do |idx|
+    out_arr << idx if str[idx, sub_str.length].hash == hash
+  end
+  out_arr
+end
