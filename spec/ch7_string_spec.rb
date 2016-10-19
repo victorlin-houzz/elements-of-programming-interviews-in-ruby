@@ -47,12 +47,35 @@ describe "String interview questions" do
       expect(roman_to_dec('LIC')).to eq(149)
     end
   end
+
   describe "#valid_ip?" do
     it "checks if an input str is a valid ip" do
       expect(valid_ip?("192.168")).to be(false)
       expect(valid_ip?("192.168.1")).to be(false)
       expect(valid_ip?("192.168.1.1")).to be(true)
       expect(valid_ip?("192.168.1.256")).to be(false)
+    end
+  end
+
+  # describe "#snake_string?" do
+  #   it "outputs snake string array" do
+  #     arr = [["","e","","",""," ","","","","l","",""],
+  #     ["H","","l","","o","","W","","r","","d",""],
+  #     ["","","","l","","","","o","","","","!"],
+  #   ]
+  #     expect(snake_string("Hello World!")).to be(arr)
+  #   end
+  # end
+
+  describe "#rle_encoding" do
+    it "encodes a string" do
+      expect(rle_encoding("abcccdde")).to eq("1a1b3c2d1e")
+    end
+  end
+
+  describe "#rle_decoding" do
+    it "decodes a string" do
+      expect(rle_decoding("1a1b3c2d1e")).to eq("abcccdde")
     end
   end
 end

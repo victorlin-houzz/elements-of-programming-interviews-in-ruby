@@ -95,3 +95,71 @@ def valid_ip?(str)
   return false unless str.match(/^\d+(\.\d+){3}$/)
   str.split('.').all?{|el| el.to_i >= 0 && el.to_i <= 255}
 end
+
+# 7.11 Print out snake output
+def snake_string(str)
+  out_arr = []
+  arr1 = []
+  arr2 = []
+  arr3 = []
+
+  first_idx = 1
+  while first_idx < str.length
+    arr1 << str[first_idx, 1]
+    arr2 << ""
+    arr3 << ""
+    first_idx += 4
+  end
+
+  second_idx = 0
+  while second_idx < str.length
+    arr1 << ""
+    arr2 << str[second_idx, 1]
+    arr3 << ""
+    second_idx += 2
+  end
+
+  third_idx = 3
+  while third_idx < str.length
+    arr1 << ""
+    arr2 << ""
+    arr3 << str[third_idx, 1]
+    third_idx += 4
+  end
+
+  out_arr << arr1
+  out_arr << arr2
+  out_arr << arr3
+  out_arr
+end
+
+# 7.12 RLE Encoding & Decoding
+
+def rle_encoding(str)
+  idx = 0
+  out_str = ""
+  while idx < str.length
+    count = 1
+    while idx + 1 < str.length && str[idx,1] == str[idx + 1,1]
+      count += 1
+      idx += 1
+    end
+    out_str += count.to_s + str[idx]
+    idx += 1
+  end
+  out_str
+end
+
+def rle_decoding(str)
+  idx = 0
+  out_str = ""
+  while idx < str.length
+    count = str[idx, 1].to_i
+    while count > 0
+      out_str += str[idx + 1, 1]
+      count -= 1
+    end
+    idx += 2
+  end
+  out_str
+end
