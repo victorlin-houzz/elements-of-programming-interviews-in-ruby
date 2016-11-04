@@ -63,6 +63,31 @@ def reverse_sublist(list, start_idx, end_idx)
   new_list
 end
 
+# 8.3  Find if a list has circle sub list
+
+def circle(list)
+  slow = list.first
+  fast = list.first
+  while fast != nil && fast.next != nil && fast.next.next != nil
+    # if not finding the circle yet, advance slow by one, and fast by two.
+    slow = slow.next
+    fast = fast.next.next
+    # find the circle, then find the start node of the circle
+    if slow == fast
+      slow = list.first
+      while slow != fast
+        slow = slow.next
+        fast = fast.next
+      end
+      # after the loop, slow will be the first node of the circle list.
+      return slow
+    end
+  end
+
+  # No circle, return nil
+  nil
+end
+
 # 8.4 Find overlapped List
 def overlapping_lists(list1, list2)
   node1 = list1.first
