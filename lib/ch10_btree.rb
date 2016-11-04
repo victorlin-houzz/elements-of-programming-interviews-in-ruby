@@ -128,7 +128,32 @@ def bst_preorder(root)
   result
 end
 
-# 10.9 Find Kth node in BTree
+# 10.9 Find Kth node inorder BTree
 def find_kth_node(root, k)
 
+end
+
+# 10.10 find successor inorder BTree
+def find_successor(node)
+  iter = node
+
+  # find the left most node in right sub tree
+  unless iter.right.nil?
+    iter = iter.right
+    until iter.left.nil?
+      iter = lter.left
+    end
+    return iter
+  end
+
+#           A
+#          /
+#         B
+#        / \
+#       C   D   => C,B,D,A => A is D's successor
+  # find the closest ancestor whose left subtree contains node.
+  while iter.parent != null && iter.parent.right == iter
+    iter = iter.parent
+  end
+  return iter.parent
 end
