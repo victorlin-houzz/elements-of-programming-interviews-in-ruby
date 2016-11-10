@@ -57,3 +57,34 @@ def find_nearest_repetition(arr)
   end
   max_dis
 end
+
+# 13.10 Find the length of a longest contain interval
+=begin
+arr = [3,7,1,2,0,9,11]
+range = 0,1,2,3 => 4
+=end
+require 'set'
+def longest_contained_range(arr)
+  unprocessed_set = arr.to_set
+  range = 0
+  until unprocessed_set.empty?
+    itr = unprocessed_set.each
+    el = itr.next
+    unprocessed_set.delete(el)
+
+    # Find the continuous numbers from the arr
+    lower_bound = el - 1
+    while unprocessed_set.include?(lower_bound)
+      unprocessed_set.delete(lower_bound)
+      lower_bound -= 1
+    end
+
+    upper_bound = el + 1
+    while unprocessed_set.include?(upper_bound)
+      unprocessed_set.delete(upper_bound)
+      upper_bound += 1
+    end
+    range = [range, upper_bound - lower_bound - 1].max
+  end
+  range
+end
