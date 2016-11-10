@@ -48,3 +48,20 @@ def find_closest_sq_root(k)
   end
   return left - 1
 end
+
+# 12.6 Sorted 2D array search
+# Time: O(m + n)
+def matrix_search(arr, k)
+  row = 0
+  col = arr[0].length - 1
+  while row < arr.length && col >= 0
+    if arr[row][col] == k
+      return true
+    elsif arr[row][col] < k
+      row += 1
+    else
+      col -= 1
+    end
+  end
+  false
+end

@@ -28,6 +28,7 @@ def check_symmetric(left, right)
 end
 
 # 10.4 if Node has parent, find LCA (Lowest common ancestor)
+# Time O(h), Space O(1)
 def parent_lca(node1, node2)
   # Find the min_depth
   n1_depth = find_depth(node1)
