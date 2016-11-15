@@ -115,3 +115,63 @@ def generate_absqrt2(k)
   end
   result
 end
+
+# 15.9 Build a minimum height BST from a sorted array
+# Time: O(n)
+def min_height_bst_from_sorted_arr(arr, start = 0, ending = arr.length)
+  return nil if start >= ending
+  mid = start + (ending - start) / 2
+  return BSTNode.new(arr[mid],
+  min_height_bst_from_sorted_arr(arr, start, mid),
+  min_height_bst_from_sorted_arr(arr, mid + 1, ending))
+end
+
+# 15.12 Lookup range for BST
+# Time: O(h + m), where h is height and m is the number of the elements within the interval
+def range_lookup_bst(node, interval, result = [])
+  return nil unless node
+  if node.value >= interval[0] && node.value <= interval[1]
+    range_lookup_bst(node.left, interval, result)
+    result << node.value
+    range_lookup_bst(node.right, interval, result)
+  elsif node.value < interval[0]
+    range_lookup_bst(node.right, interval, result)
+  else
+    range_lookup_bst(node.left, interval, result)
+  end
+  result
+end
+
+# 15.13 Client Credit Info System
+class ClientsCreditsInfo
+  @@offset = 0
+  def initialize
+    client_to_credit = {}
+    credit_to_client = BinarySearchTree.new
+  end
+
+  def insert(id, credit)
+    remove(id)
+    client_to_credit[id] = (credit - @@offset)
+    node = BSTNode.new(credit - @@offset)
+    credit_to_client.insert(node)
+  end
+
+  def remove(id)
+    credit = client_to_credit[id]
+    client_to_credit.delete(id)
+    credit_to_client.delete(credit)
+  end
+
+  def lookup(id)
+    credit = client_to_credit[id]
+    return credit.nil? ? nil : credit + @@offset
+  end
+
+  def add_all(credit)
+    @@offset += credit
+  end
+
+  def max
+    credit_to_client.max + @@offset
+  end
