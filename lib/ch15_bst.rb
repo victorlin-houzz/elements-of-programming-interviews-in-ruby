@@ -1,11 +1,4 @@
-class BSTNode
-  attr_accessor :data, :left, :right
-  def initialize(data = nil, left = nil, right = nil)
-    @data = data
-    @left = left
-    @right = right
-  end
-end
+require 'bst'
 
 # 15.1 check if a bt a bst
 def is_bst?(tree)
@@ -85,4 +78,40 @@ def rebuild_bst_preorder(seq, min, max)
   left = rebuild_bst_preorder(seq, min, curr_root)
   right = rebuild_bst_preorder(seq, curr_root, max)
   return BSTNode.new(curr_root, left, right)
+end
+
+# 15.7 Generate K number of ABSqrt2, where a & b >=0
+# Time: O(n)
+
+class ABSqrt2
+  attr_accessor :a, :b
+  attr_reader :val
+  def initialize(a, b)
+    @a = a
+    @b = b
+    @val = a + b * Math.sqrt(2)
+  end
+end
+
+def generate_absqrt2(k)
+  return [] if k < 1
+  result = []
+  result << ABSqrt2.new(0,0)
+  i, j = 0, 0
+  1.upto(k).each do |n|
+    result_i_plus_one = ABSqrt2.new(result[i].a + 1, result[i].b)
+    result_j_plus_one = ABSqrt2.new(result[j].a, result[j].b + 1)
+    if result_i_plus_one.val < result_j_plus_one.val
+      i += 1
+      result << result_i_plus_one
+    elsif result_i_plus_one.val > result_j_plus_one.val
+      j += 1
+      result << result_j_plus_one
+    else
+      i += 1
+      j += 1
+      result << result_i_plus_one
+    end
+  end
+  result
 end
