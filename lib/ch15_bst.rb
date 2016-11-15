@@ -1,9 +1,9 @@
 class BSTNode
   attr_accessor :data, :left, :right
-  def initialize(data = nil)
+  def initialize(data = nil, left = nil, right = nil)
     @data = data
-    @left = nil
-    @right = nil
+    @left = left
+    @right = right
   end
 end
 
@@ -67,4 +67,22 @@ def find_lca_bst(root, left_node, right_node)
 
   # Now node.data >= left_node.data && node.data <= right_node.data, which is the LCA
   return node
+end
+
+# 15.5 Reconstruct Preorder BST
+# Time: O(n)
+def preorder_bst(seq)
+  $curr_idx = 0
+  return rebuild_bst_preorder(seq, -9999999, 9999999)
+end
+
+def rebuild_bst_preorder(seq, min, max)
+  return nil if $curr_idx == seq.length
+  curr_root = seq[$curr_idx]
+  return nil if curr_root < min || curr_root > max
+
+  $curr_idx += 1
+  left = rebuild_bst_preorder(seq, min, curr_root)
+  right = rebuild_bst_preorder(seq, curr_root, max)
+  return BSTNode.new(curr_root, left, right)
 end
