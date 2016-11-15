@@ -46,3 +46,16 @@ def merge_sorted_arrays(arr1, arr2, m, n)
   end
   return arr1
 end
+
+# 14.10 Find the salary cap
+# Time: at Sort, so O(nlogn)
+def salary_cap(target, sal_arr)
+  sal_arr.sort!
+  unadj_total = 0
+  sal_arr.each_with_index do |sal, idx|
+    adj_total = sal * (sal_arr.length - idx)
+    return (target - unadj_total) / (sal_arr.length - idx) if adj_total + unadj_total >= target
+    unadj_total += sal
+  end
+  nil
+end
