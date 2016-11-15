@@ -49,3 +49,22 @@ def find_k_largest_bst(tree, k, arr = [])
   # p "returning... #{tree.data}" if tree
   arr
 end
+
+#15.4 Find the LCA for BST
+# Time: O(h)
+def find_lca_bst(root, left_node, right_node)
+  node = root
+
+  # Start from root, looking for a node > left_node.data && < right_node.data
+  while node.data < left_node.data || node.data > right_node.data
+    while node.data < left_node.data
+      node = node.right
+    end
+    while node.data > right_node.data
+      node = node.left
+    end
+  end
+
+  # Now node.data >= left_node.data && node.data <= right_node.data, which is the LCA
+  return node
+end
