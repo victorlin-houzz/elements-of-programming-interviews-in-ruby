@@ -100,3 +100,22 @@ def is_palindrome?(str)
   end
   return true
 end
+
+# 16.8 Generate BTree with n nodes
+def generate_btree(n)
+  result = []
+  result << nil if n == 0
+  left_node = 0
+  while left_node < n
+    right_node = n - left_node - 1
+    left_sub_trees = generate_btree(left_node)
+    right_sub_trees = generate_btree(right_node)
+    left_sub_trees.each do |left|
+      right_sub_trees.each do |right|
+        result << BSTNode.new(n, left, right)
+      end
+    end
+    left_node += 1
+  end
+  result
+end
