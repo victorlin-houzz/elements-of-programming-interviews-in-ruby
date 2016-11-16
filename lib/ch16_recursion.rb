@@ -21,3 +21,24 @@ def compute_toh(nums, pegs, from, to, via)
     compute_toh(nums - 1, pegs, via, to, from)
   end
 end
+
+# 16.3 Generate permutations
+def permutations(input)
+  result = []
+  build_permutations(input, 0, result)
+end
+
+def build_permutations(input, i, result)
+  if i == (input.length - 1)
+    result << input.dup
+    return result
+  end
+  j = i
+  while j < input.length
+    input[i], input[j] = input[j], input[i]
+    build_permutations(input, i + 1, result)
+    input[i], input[j] = input[j], input[i]
+    j += 1
+  end
+  return result
+end
