@@ -42,3 +42,26 @@ def build_permutations(input, i, result)
   end
   return result
 end
+
+# 16.6 Generate Strings of matched parens
+def generate_balanced_parens(num_pairs)
+  result = []
+  build_balanced_parens(num_pairs, num_pairs, "", result)
+end
+
+def build_balanced_parens(num_left_parens_needed, num_right_parens_needed, valid_prefix, result)
+  if num_left_parens_needed == 0 && num_right_parens_needed == 0
+    result << valid_prefix
+    return
+  end
+  # Able to insert (
+  if num_left_parens_needed > 0
+    build_balanced_parens(num_left_parens_needed - 1, num_right_parens_needed, valid_prefix + "(", result)
+  end
+
+  # Able to insert )
+  if num_left_parens_needed < num_right_parens_needed
+    build_balanced_parens(num_left_parens_needed, num_right_parens_needed - 1, valid_prefix + ")", result)
+  end
+  result
+end
