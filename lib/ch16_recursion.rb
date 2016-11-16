@@ -119,3 +119,24 @@ def generate_btree(n)
   end
   result
 end
+
+# 16.10 Generate n-bit gray code
+# Time: O(2^n)
+def graycode(n)
+  # Base case
+  if n == 0
+    return [0]
+  elsif n == 1
+    return [0, 1]
+  end
+  prev_codes = graycode(n - 1)
+  leading_bit_one = 1 << (n - 1)
+  reflection = []
+
+  # Here we want to reverse to prepend the leading one to prev_codes,
+  # in order to get the gray codes differ in one place on wrapping around.
+  (prev_codes.length - 1).downto(0).each do |i|
+    reflection << (leading_bit_one | prev_codes[i])
+  end
+  prev_codes + reflection
+end
