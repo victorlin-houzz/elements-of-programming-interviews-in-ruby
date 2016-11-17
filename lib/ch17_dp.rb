@@ -30,35 +30,34 @@ end
 =begin
      Amount   0  1  2  3  4  5
 Coin
-0            [1, 0, 0, 0, 0, 0],
 1            [1, 1, 1, 1, 1, 1],
 2            [1, 1, 2, 2, 3, 3],
 3            [1, 1, 2, 3, 4, 5]
 =end
 def coin_change(amount, coins = [1,2,3])
-  solution = Array.new(coins.length + 1){Array.new(amount + 1)}
+  solution = Array.new(coins.length){Array.new(amount + 1)}
 
   # Base case are always 1 way, where amount = 0
-  0.upto(coins.length).each do |i|
+  0.upto(coins.length - 1).each do |i|
     solution[i][0] = 1
   end
 
-  # Base case for coin 0, always 0 way
+  # Base case for coin 1, always 0 way
   1.upto(amount).each do |j|
-    solution[0][j] = 0
+    solution[0][j] = 1
   end
 
-  1.upto(coins.length).each do |i|
+  1.upto(coins.length - 1).each do |i|
     1.upto(amount).each do |j|
-      # check if the coin value is less than the amount needed
-      if coins[i - 1] <= j
+      # check if the amount needed is less than the coin value
+      if j < coins[i]
+        # just copy the value from the top
+        solution[i][j] = solution[i - 1][j];
+      else
         # reduce the amount by coin value and
         # use the subproblem solution (amount-v[i]) and
         # add the solution from the top to it
-        solution[i][j] = solution[i - 1][j] + solution[i][j - coins[i - 1]]
-      else
-        # just copy the value from the top
-        solution[i][j] = solution[i - 1][j];
+        solution[i][j] = solution[i - 1][j] + solution[i][j - coins[i]]
       end
     end
   end
@@ -165,4 +164,51 @@ def compute_bc(n, k, arr)
     arr[n][k] = compute_bc(n - 1, k, arr) + compute_bc(n - 1, k - 1, arr)
   end
   arr[n][k]
+end
+
+# 17.6 Knapsack problem
+class Item
+  attr_accessor :value, :weight
+
+  def initialize(value, weight)
+    @value = value
+    @weight = weight
+  end
+end
+i1 = Item.new(60, 5)
+i2 = Item.new(50, 3)
+i3 = Item.new(70, 4)
+i4 = Item.new(30, 2)
+items = [i1, i2, i3, i4]
+
+=begin
+      weight 0  1   2   3   4   5
+  item
+    i1      [0, 0,  0,  0,  0, 60],
+    i2      [0, 0,  0, 50, 50, 60],
+    i3      [0, 0,  0, 50, 70, 70],
+    i4      [0, 0, 30, 50, 70, 80]
+=end
+# Time: O(nw)
+# Space: O(nw)
+def knapsack(items, capacity)
+  result = Array.new(items.length) {Array.new(capacity + 1)}
+  0.upto(items.length - 1).each do |i|
+    result[i][0] = 0
+    1.upto(capacity).each do |j|
+      without_curr = result[i - 1][j]
+
+      # If current weight is less than current item's weight
+      if j < items[i].weight
+        result[i][j] = (i - 1) >= 0 ? without_curr : 0
+      else
+        result[i][j] = (i - 1) >= 0 ?
+        # Max of Current item value + value from same row but Value[j - W[i]], or the value from the top
+        [without_curr, items[i].value + result[i][j - items[i].weight]].max :
+        # Current item value + value from same row but Value[j - W[i]]
+        items[i].value + result[i][j - items[i].weight]
+      end
+    end
+  end
+  result
 end
