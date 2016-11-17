@@ -4,4 +4,4 @@ This repo is mainly translating the book "Elements of Programming Interviews in 
 I also write couple extra classes i.e. bst, b_tree, linked_list for testing purposes.
 
 [Chap 5: Array][array]
-[array]: (lib/ch5_array.rb)
+[array]: lib/ch5_array.rb
