@@ -145,3 +145,22 @@ def compute_walk(x, y, arr)
   arr[x][y] = way_top + way_left
   arr[x][y]
 end
+
+# 17.4 Binomial Coefficient
+def binomial_coefficient(n, k)
+  arr = Array.new(n + 1){Array.new(k + 1)}
+  compute_bc(n, k, arr)
+end
+
+# (n,k) = 0 if n == 0
+# (n,k) = 1 if k == 0
+# (n,k) = 1 if n == k
+
+def compute_bc(n, k, arr)
+  return 0 if n == 0
+  return 1 if n == k || k == 0
+  unless arr[n][k]
+    arr[n][k] = compute_bc(n - 1, k, arr) + compute_bc(n - 1, k - 1, arr)
+  end
+  arr[n][k]
+end
