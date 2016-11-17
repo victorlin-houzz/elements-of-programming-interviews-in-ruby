@@ -1,4 +1,4 @@
-# Elements of Programming Interviews in Ruby
+# Elements of Programming Interviews in "Ruby"
 
 [LINK: Elements of Programming Interviews in Java][amazon-link]
 [amazon-link]: https://www.amazon.com/gp/product/1517435803/
