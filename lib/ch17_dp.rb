@@ -99,3 +99,47 @@ def make_change(target, coins = [25, 10, 5, 1])
   end
   best_change
 end
+
+# 17.2 CODE NOT WORKING!!!!
+# 17.2 Compute Levenshtein distance
+# def levenshtein_distance(str_a, str_b)
+#   dis_arr = Array.new(str_a.length){Array.new(str_b.length){-1}}
+#   compute_dis(str_a, str_a.length - 1, str_b, str_b.length - 1, dis_arr)
+# end
+#
+# def compute_dis(str_a, idx_a, str_b, idx_b, dis_arr)
+#   # str_a is empty, so add all str_b char
+#   if idx_a < 0
+#     return idx_b + 1
+#   elsif idx_b < 0
+#     return idx_a + 1
+#   end
+#
+#   if dis_arr[idx_a][idx_b] == -1
+#     if str_a[idx_a, 1] == str_b[idx_b, 1]
+#       compute_dis(str_a, idx_a - 1, str_b, idx_b - 1, dis_arr)
+#     else
+#       sub_last_a_with_last_b = compute_dis(str_a, idx_a - 1, str_b, idx_b - 1, dis_arr)
+#       add_last = compute_dis(str_a, idx_a, str_b, idx_b - 1, dis_arr)
+#       delete_last = compute_dis(str_a, idx_a - 1, str_b, idx_b, dis_arr)
+#       dis_arr[idx_a][idx_b] = 1 + [sub_last_a_with_last_b, add_last, delete_last].min
+#     end
+#   end
+#   p dis_arr
+#   dis_arr[idx_a][idx_b]
+# end
+
+# 17.3 Count number of ways to go from 0,0 to m,n in a 2-D array
+def walk_array(m,n)
+  arr = Array.new(m){Array.new(n)}
+  result = compute_walk(m - 1, n - 1, arr)
+  return result
+end
+
+def compute_walk(x, y, arr)
+  return 1 if x == 0 || y == 0
+  way_top = x == 0 ? 0 : compute_walk(x - 1, y, arr)
+  way_left = x == 0 ? 0 : compute_walk(x, y - 1, arr)
+  arr[x][y] = way_top + way_left
+  arr[x][y]
+end
