@@ -212,3 +212,35 @@ def knapsack(items, capacity)
   end
   result
 end
+
+# 17.8 Find the minumum weight path in a triangle
+=begin
+triangle = [['2'],
+          [4,'4'],
+         [8,'5',6],
+        [4,'2',6,2],
+       [1,5,'2',3,4]]
+Min Weight would be 2 + 4 + 5 + 2 + 2 = 15
+=end
+def min_path_triangle(triangle)
+  if triangle.empty?
+    return []
+  end
+  prev_row = triangle.first
+  1.upto(triangle.length - 1).each do |i|
+    curr_row = triangle[i]
+
+    # For the first element
+    curr_row[0] = prev_row[0] + curr_row[0]
+
+    # Elements in between, exclude the last element
+    1.upto(curr_row.length - 2).each do |j|
+      curr_row[j] = curr_row[j] + [prev_row[j - 1], prev_row[j]].min
+    end
+
+    # Last element
+    curr_row[curr_row.length - 1] = curr_row[curr_row.length - 1] + prev_row[prev_row.length - 1]
+    prev_row = curr_row
+  end
+  prev_row.min
+end
