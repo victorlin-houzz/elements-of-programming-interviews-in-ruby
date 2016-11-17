@@ -244,3 +244,53 @@ def min_path_triangle(triangle)
   end
   prev_row.min
 end
+
+# 17.9 pick coins for max gain
+# Time: O(n ^ 2)
+=begin
+coins = [25,5,10,5,10,5,10,25,1,25,1,25,1,25,5,10]
+(starts at i) O ...coins... O (ends at j)
+F(i, j) = Max{
+  Pick(i) + Min{F(i + 2, j), F(i + 1, j - 1)}
+  Pick(j) + Min{F(i, j - 2), F(i + 1, j - 1)}
+}, otherwise 0
+=end
+def pickup_coins(coins, i = 0, j = coins.length - 1, result = Array.new(coins.length){Array.new(coins.length)})
+  return 0 if i > j
+  max_i = coins[i] + [pickup_coins(coins, i + 2, j, result), pickup_coins(coins, i + 1, j - 1, result)].min
+  max_j = coins[j] + [pickup_coins(coins, i, j - 2, result), pickup_coins(coins, i + 1, j - 1, result)].min
+  result[i][j] = [max_i, max_j].max
+  return result[i][j]
+end
+
+# 17.10 Ways of climbing n stairs, each time can climb 1~max stairs
+def ways_climbing_stairs(n, max, result = Array.new(n + 1){0})
+  return 1 if n <= 1
+  if result[n] == 0
+    i = 1
+    # result[n] = ways_climbing_stairs(n - 1, max, result) + ways_climbing_stairs(n - 2, max, result)
+    # + ..... + ways_climbing_stairs(n - n, max, result)
+    while i <= max && n - i >= 0
+      result[n] += ways_climbing_stairs(n - i, max, result)
+      i += 1
+    end
+  end
+  p result
+  return result[n]
+end
+
+# 17.12 Find the longest non-decreasing sub sequence length
+# arr = [0,8,4,12,2,10,6,14,1,9]
+# Time: O(n ^ 2)
+# Space: O(n)
+def longest_nondecreasing_sub_seq(arr)
+  max_length = Array.new(arr.length) {1}
+  1.upto(arr.length - 1).each do |i|
+    0.upto(i - 1).each do |j|
+      if arr[i] >= arr[j]
+        max_length[i] = [max_length[i], 1 + max_length[j]].max
+      end
+    end
+  end
+  max_length.max
+end
