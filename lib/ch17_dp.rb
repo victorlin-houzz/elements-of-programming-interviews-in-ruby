@@ -130,6 +130,8 @@ end
 # end
 
 # 17.3 Count number of ways to go from 0,0 to m,n in a 2-D array
+# Time: O(mn)
+# Space: O(mn)
 def walk_array(m,n)
   arr = Array.new(m){Array.new(n)}
   result = compute_walk(m - 1, n - 1, arr)
