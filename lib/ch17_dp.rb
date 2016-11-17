@@ -147,6 +147,8 @@ def compute_walk(x, y, arr)
 end
 
 # 17.4 Binomial Coefficient
+# Time: O(nk)
+# Space: O(nk)
 def binomial_coefficient(n, k)
   arr = Array.new(n + 1){Array.new(k + 1)}
   compute_bc(n, k, arr)
