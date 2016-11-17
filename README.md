@@ -1,4 +1,4 @@
-# elements-of-programming-interviews-in-ruby
+# Elements of Programming Interviews in Ruby
 
 This repo is mainly translating the book "Elements of Programming Interviews in Java" from Java to Ruby.
 I also write couple extra classes i.e. bst, b_tree, linked_list for testing purposes.
