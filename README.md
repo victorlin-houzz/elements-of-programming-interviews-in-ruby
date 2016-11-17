@@ -1,6 +1,6 @@
 # Elements of Programming Interviews in "Ruby"
 
-[LINK: Elements of Programming Interviews in Java][amazon-link]
+[Book: Elements of Programming Interviews in Java][amazon-link]
 [amazon-link]: https://www.amazon.com/gp/product/1517435803/
 
 This repo is mainly translating the book "Elements of Programming Interviews in Java" from Java to Ruby.
