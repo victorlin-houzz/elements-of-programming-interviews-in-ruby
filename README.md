@@ -13,7 +13,7 @@ I also write couple extra classes i.e. bst, b_tree, linked_list for testing purp
 [stack]: lib/ch9_stack.rb
 [Chap 10: Binary Tree][btree]
 [btree]: lib/ch10_btree.rb
-[Chap 11: Heap][heap]
+[Chap 11: Heap][heap] (Working)
 [heap]: lib/ch11_heap.rb
 [Chap 12: Search][search]
 [search]: lib/ch12_search.rb
@@ -27,7 +27,7 @@ I also write couple extra classes i.e. bst, b_tree, linked_list for testing purp
 [recursion]: lib/ch16_recursion.rb
 [Chap 17: Search][dp]
 [dp]: lib/ch17_dp.rb
-[Chap 18: Greedy Algorithms and Invariants][greedy]
+[Chap 18: Greedy Algorithms and Invariants][greedy] (Working)
 [greedy]: lib/ch18_greedy.rb
-[Chap 19: Graph][graph]
+[Chap 19: Graph][graph] (Working)
 [graph]: lib/ch19_graph.rb
