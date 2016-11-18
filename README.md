@@ -30,7 +30,9 @@ I also write couple extra classes i.e. bst, b_tree, linked_list for testing purp
 [recursion]: lib/ch16_recursion.rb
 [Chap 17: Dynamic Programming][dp]
 [dp]: lib/ch17_dp.rb
-[Chap 18: Greedy Algorithms and Invariants][greedy] (Working)
+[Chap 18: Greedy Algorithms][greedy]
 [greedy]: lib/ch18_greedy.rb
+[Chap 18: Invariants][invariants]
+[invariants]: lib/ch18_invariants.rb
 [Chap 19: Graph][graph] (Working)
 [graph]: lib/ch19_graph.rb
