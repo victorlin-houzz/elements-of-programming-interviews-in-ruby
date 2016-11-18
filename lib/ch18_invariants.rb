@@ -78,3 +78,25 @@ def better_majority_char(str)
   end
   candidate
 end
+
+# 18.7 Max water (area) for a pair of vertical lines
+# heights = [1,2,1,3,4,5,5,6,7,2,1,3,1,3,2,1,2,4,1]
+# Time: O(n)
+# Space: O(1)
+def max_water(heights)
+  i = 0
+  j = heights.length - 1
+  max = 0
+  while i < j
+    max = [[heights[i], heights[j]].min * (j - i), max].max
+    if heights[i] < heights[j]
+      i += 1
+    elsif heights[i] > heights[j]
+      j -= 1
+    else
+      i += 1
+      j -= 1
+    end
+  end
+  max
+end
