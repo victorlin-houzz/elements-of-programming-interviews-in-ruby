@@ -45,3 +45,36 @@ def better_three_sum?(arr, target)
   end
   false
 end
+
+# 18.5 Find the majority char in a string
+# Time: O(n)
+# Space: O(k) - distinct chars in the string
+
+def majority_char(str)
+  hash = Hash.new(){0}
+  str.each_char do |c|
+    hash[c] += 1
+  end
+  max = hash.values.max
+  str.each_char.select do |c|
+    hash[c] == max
+  end.first
+end
+
+# Time: O(n)
+# Space: O(1) - Use counter
+def better_majority_char(str)
+  candidate = ""
+  count = 0
+  str.each_char do |c|
+    if count == 0
+      candidate = c
+      count = 1
+    elsif candidate == c
+      count += 1
+    else
+      count -= 1
+    end
+  end
+  candidate
+end
