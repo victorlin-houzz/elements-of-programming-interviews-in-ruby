@@ -20,7 +20,7 @@ def search_first_of_k(arr, k)
 end
 
 # 12.3 search the smallest element in a cyclically array
-# arr = [5,6,7,8,9,10,1,2], out = index 5
+# arr = [5,6,7,8,9,10,1,2], out = index 6
 
 def search_the_smallest(arr)
   mid = nil

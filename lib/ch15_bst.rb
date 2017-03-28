@@ -146,25 +146,25 @@ end
 class ClientsCreditsInfo
   @@offset = 0
   def initialize
-    client_to_credit = {}
-    credit_to_client = BinarySearchTree.new
+    @client_to_credit = {}
+    @credit_to_client = BinarySearchTree.new
   end
 
   def insert(id, credit)
     remove(id)
-    client_to_credit[id] = (credit - @@offset)
+    @client_to_credit[id] = (credit - @@offset)
     node = BSTNode.new(credit - @@offset)
-    credit_to_client.insert(node)
+    @credit_to_client.insert(node)
   end
 
   def remove(id)
-    credit = client_to_credit[id]
-    client_to_credit.delete(id)
-    credit_to_client.delete(credit)
+    credit = @client_to_credit[id]
+    @client_to_credit.delete(id)
+    @credit_to_client.delete(credit)
   end
 
   def lookup(id)
-    credit = client_to_credit[id]
+    credit = @client_to_credit[id]
     return credit.nil? ? nil : credit + @@offset
   end
 
@@ -173,5 +173,5 @@ class ClientsCreditsInfo
   end
 
   def max
-    credit_to_client.max + @@offset
+    @credit_to_client.max + @@offset
   end

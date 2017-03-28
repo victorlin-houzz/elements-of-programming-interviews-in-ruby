@@ -1,4 +1,4 @@
-# 13.1: take in a string and return whether any of it's permutations are palindromes
+# 13.1: take in a string and return whether all of it's permutations are palindromes
 # Time: O(n)
 def per_palindromes?(str)
   hash = Hash.new{0}
@@ -52,7 +52,7 @@ def find_nearest_repetition(arr)
       hash[el] = idx
     else
       distance = idx - hash[el]
-      max_dis = distance if max_dis.nil? || (!max_dis.nil? && distance < max_dis)
+      max_dis = distance if max_dis.nil? || distance < max_dis
     end
   end
   max_dis

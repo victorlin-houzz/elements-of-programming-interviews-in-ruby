@@ -1,5 +1,6 @@
 # 6.0
 # Swap even number to the front of the array.
+# 2 pointers
 # O(n) time and O(1) space.
 def swap_even_odd(arr)
   even_idx = 0

@@ -64,7 +64,7 @@ end
 # 10.5 sum the root to leaf binary tree
 
 def sum_binary(root)
-  return (root, 0)
+  return partial_sum(root, 0)
 end
 
 def partial_sum(node, curr_sum)
@@ -81,7 +81,7 @@ end
 # 10.6, similar to 10.5, find the target sum
 
 def target_sum(root, target_sum)
-  return partial_target_sum(root, target_sum, curr_sum)
+  return partial_target_sum(root, target_sum, 0)
 end
 
 def partial_target_sum(node, target_sum, curr_sum)

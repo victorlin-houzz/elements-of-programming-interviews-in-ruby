@@ -1,4 +1,4 @@
-# 15.1 Tower of Hanoi
+# 16.1 Tower of Hanoi
 def compute_tower_of_hanoi(nums)
   # Setup
   num_pegs = 4
@@ -20,6 +20,45 @@ def compute_toh(nums, pegs, from, to, via)
     p 'moving from peg ' + from.to_s + ' to peg ' + to.to_s + ' --- Disk ' + pegs[to].last.to_s
     compute_toh(nums - 1, pegs, via, to, from)
   end
+end
+
+
+# 16.2 Generate all non-attacking placements of n-Queens
+def n_queens(n)
+  result = []
+  solve_queens(n, 0, [], result)
+  p result
+  result
+end
+
+def solve_queens(n, row, colplacement, result)
+  if row == n
+    result << colplacement.dup
+  else
+    0.upto(n - 1) do |col|
+      colplacement << col
+      solve_queens(n, row + 1, colplacement, result) if is_valid?(colplacement)
+      colplacement.pop
+    end
+  end
+  return result
+end
+
+def is_valid?(colplacement)
+  # start
+  # colplacement[1,2]
+  # [0,1,0,0]
+  # [0,0,1,0]
+  # row_idx = 1
+  # idx = 0
+  # end
+
+  row_idx = colplacement.length - 1
+  0.upto(row_idx - 1) do |idx|
+    diff = (colplacement[idx] - colplacement[row_idx]).abs
+    return false if diff == 0 || diff == row_idx - idx
+  end
+  true
 end
 
 # 16.3 Generate permutations
