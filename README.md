@@ -8,7 +8,7 @@ I also write couple extra classes i.e. bst, b_tree, linked_list for testing purp
 
 [Chap 6: Array](lib/ch6_array.rb)
 [Chap 7: String][string]
-[string]: lib/ch7_string.rb
+[string](lib/ch7_string.rb)
 [Chap 8: Linked List][linked_list]
 [linked_list]: lib/ch8_linked_list.rb
 [Chap 9: Stack][stack]
