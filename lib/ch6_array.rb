@@ -51,6 +51,7 @@ end
 # 6.6
 # Return the idx pair for the max profit for buying & selling a stock.
 # O(n) time and O(1) space.
+
 def stock_max_profit(arr)
   max_profit = 0
   min = arr[0]
@@ -68,6 +69,17 @@ def stock_max_profit(arr)
     end
   end
   [min_idx, max_idx]
+end
+
+# Return the max profit
+def stock_max(arr)
+  max = -1
+  min = arr[0]
+  1.upto(arr.length - 1) do |i|
+    min = [min, arr[i]].min
+    max =  [arr[i] - min, max].max
+  end
+  max
 end
 
 # 6.11
@@ -147,6 +159,42 @@ def rotate_matrix(arr, clockwise)
   end
   # p dup_arr
   dup_arr
+end
+
+def rotate_matrix_2(arr, clockwise)
+
+  # Clockwise flip up & down, flip diag
+  # 1 2 3     7 8 9    7 4 1
+  # 4 5 6  => 4 5 6 => 8 5 2
+  # 7 8 9     1 2 3    9 6 3
+  if clockwise
+    0.upto(arr.length / 2) do |i|
+      arr[i], arr[arr.length-1-i] = arr[arr.length-1-i], arr[i]
+    end
+    0.upto(arr.length - 1) do |i|
+      (i + 1).upto(arr.length - 1) do |j|
+        arr[i][j], arr[j][i] = arr[j][i], arr[i][j]
+      end
+    end
+
+  # Counter Clockwise flip left & right, flip diag
+  # 1 2 3     3 2 1    3 6 9
+  # 4 5 6  => 6 5 4 => 2 5 8
+  # 7 8 9     9 8 7    1 4 7
+  else
+    0.upto(arr.length - 1) do |i|
+      (0).upto(arr.length/2) do |j|
+        arr[i][j], arr[i][arr.length-1-j] = arr[i][arr.length-1-j], arr[i][j]
+      end
+    end
+    0.upto(arr.length - 1) do |i|
+      (i + 1).upto(arr.length - 1) do |j|
+        arr[i][j], arr[j][i] = arr[j][i], arr[i][j]
+      end
+    end
+  end
+
+  arr
 end
 
 # 6.19 Pascal's triangle
